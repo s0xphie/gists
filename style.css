@@ -1,7 +1,7 @@
 :root {
-    --bg: 111111;
+    --bg: #111111;
     --bg-alt: #222222;
-    --fg: #e0e0e0;
+    --fg: #00ff00;
     --fg-muted: #cacaca;
     --accent: #cacdca;
     --table-header: #000000;
@@ -18,11 +18,9 @@ html {
 }
 
 body {
-    background: var(--bg);
-    color: var(--fg);
-    font: Consolas;
-    margin: 0;
-    padding: 20px;
+    background: #000000;
+    color: #00ff00;
+    font-family: Consolas, monospace;
 }
 
 h1 {
@@ -34,8 +32,8 @@ h1 {
     max-width: 600px;
     padding: 10px;
     margin-bottom: 20px;
-    background: var(--bg-alt);
-    color: var(--fg);
+    background: #000000;
+    color: #551555;
 }
 
 .table-container {
@@ -50,10 +48,9 @@ table {
 
 th {
     background: var(--table-header);
-    color: #fff;
+    color: #00ff00;
     text-align: left;
     padding: 1px;
-    border: 1px solid var(--border);
     position: sticky;
     top: 0;
 }
@@ -64,7 +61,7 @@ td {
 }
 
 tr:nth-child(even) {
-    background: var(--table-row-alt);
+    background: #101010;
 }
 
 tr:hover {
@@ -72,10 +69,10 @@ tr:hover {
 }
 
 a {
-    color: var(--accent);
+    color: #00ff00;
 }
 
 .status {
-    color: var(--fg-muted);
+    color: #000000;
     margin-bottom: 1em;
 }
