@@ -1,13 +1,12 @@
 :root {
-    --bg: #121212;
-    --bg-alt: #1b1b1b;
+    --bg: 111111;
+    --bg-alt: #222222;
     --fg: #e0e0e0;
-    --fg-muted: #b0b0b0;
-    --accent: #58a6ff;
-    --border: #30363d;
-    --table-header: #1f2937;
-    --table-row: #161b22;
-    --table-row-alt: #0d1117;
+    --fg-muted: #cacaca;
+    --accent: #cacdca;
+    --table-header: #000000;
+    --table-row: #101010;
+    --table-row-alt: #101010;
 }
 
 * {
@@ -21,7 +20,7 @@ html {
 body {
     background: var(--bg);
     color: var(--fg);
-    font-family: "Segoe UI", Arial, sans-serif;
+    font: Consolas;
     margin: 0;
     padding: 20px;
 }
@@ -37,8 +36,6 @@ h1 {
     margin-bottom: 20px;
     background: var(--bg-alt);
     color: var(--fg);
-    border: 1px solid var(--border);
-    border-radius: 4px;
 }
 
 .table-container {
@@ -55,15 +52,14 @@ th {
     background: var(--table-header);
     color: #fff;
     text-align: left;
-    padding: 10px;
+    padding: 1px;
     border: 1px solid var(--border);
     position: sticky;
     top: 0;
 }
 
 td {
-    padding: 8px 10px;
-    border: 1px solid var(--border);
+    padding: 1px 1px;
     vertical-align: top;
 }
 
@@ -72,7 +68,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-    background: #22304a;
+    background: #444444;
 }
 
 a {
