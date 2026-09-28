@@ -3,9 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gistse</title>
+    <title>gists</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
   </head>
   <body>
-    <script src="https://gist.github.com/s0xphie/90de92223b26d86689978b712564e49a.js"></script>
+<pre id="gist"></pre>
+ 
+<script>
+fetch("https://gist.githubusercontent.com/s0xphie/90de92223b26d86689978b712564e49a/raw/2490ca74b2ddaa420e9d0948ce0dbd6f922a2b15/gist.csv")
+.then(r => r.text())
+.then(t => document.getElementById("gist").textContent = t);
+</script>    
+
   </body>
 </html>
