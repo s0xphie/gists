@@ -1,14 +1,85 @@
 :root {
---bg: #121212;
---bg-alt: #1b1b1b;
---fg: #e0e0e0;
---fg-muted: #b0b0b0;
---accent: #
+    --bg: #121212;
+    --bg-alt: #1b1b1b;
+    --fg: #e0e0e0;
+    --fg-muted: #b0b0b0;
+    --accent: #58a6ff;
+    --border: #30363d;
+    --table-header: #1f2937;
+    --table-row: #161b22;
+    --table-row-alt: #0d1117;
+}
 
-pre {
-    background: #1e1e1e;
-    color: #d4e2d4;
-    padding: 1em;
-    overflow-x: auto;
+* {
+    box-sizing: border-box;
+}
+
+html {
+    color-scheme: dark;
+}
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+#search {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: var(--bg-alt);
+    color: var(--fg);
+    border: 1px solid var(--border);
     border-radius: 4px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--table-row);
+}
+
+th {
+    background: var(--table-header);
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+}
+
+td {
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background: var(--table-row-alt);
+}
+
+tr:hover {
+    background: #22304a;
+}
+
+a {
+    color: var(--accent);
+}
+
+.status {
+    color: var(--fg-muted);
+    margin-bottom: 1em;
 }
