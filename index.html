@@ -1,19 +1,136 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gists</title>
-    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
-  </head>
-  <body>
-<pre id="gist"></pre>
- 
-<script>
-fetch("https://gist.githubusercontent.com/s0xphie/90de92223b26d86689978b712564e49a/raw/2490ca74b2ddaa420e9d0948ce0dbd6f922a2b15/gist.csv")
-.then(r => r.text())
-.then(t => document.getElementById("gist").textContent = t);
-</script>    
+    <title>Gists</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
 
-  </body>
+<input
+    id="search"
+    type="text"
+    placeholder="Search..."
+>
+
+<div class="status" id="status">
+    Loading CSV...
+</div>
+
+<div class="table-container">
+    <table id="table"></table>
+</div>
+
+<script>
+
+const CSV_URL =
+"https://gist.githubusercontent.com/s0xphie/90de92223b26d86689978b712564e49a/raw/2490ca74b2ddaa420e9d0948ce0dbd6f922a2b15/gist.csv";
+
+const table = document.getElementById("table");
+const statusBox = document.getElementById("status");
+const searchBox = document.getElementById("search");
+
+let allRows = [];
+
+function parseCSV(text) {
+    return text
+        .split(/\r?\n/)
+        .filter(line => line.trim() !== "")
+        .map(line => {
+            const result = [];
+            let current = "";
+            let quote = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const ch = line[i];
+
+                if (ch === '"') {
+                    quote = !quote;
+                } else if (ch === ',' && !quote) {
+                    result.push(current);
+                    current = "";
+                } else {
+                    current += ch;
+                }
+            }
+
+            result.push(current);
+            return result;
+        });
+}
+
+function render(rows) {
+
+    table.innerHTML = "";
+
+    if (!rows.length) {
+        table.innerHTML =
+            "<tr><td>No matching records.</td></tr>";
+        return;
+    }
+
+    const width = Math.max.apply(
+        null,
+        rows.map(r => r.length)
+    );
+
+    const header = document.createElement("tr");
+
+    for (let i = 0; i < width; i++) {
+        const th = document.createElement("th");
+        th.textContent = "Column " + (i + 1);
+        header.appendChild(th);
+    }
+
+    table.appendChild(header);
+
+    rows.forEach(row => {
+
+        const tr = document.createElement("tr");
+
+        for (let i = 0; i < width; i++) {
+            const td = document.createElement("td");
+            td.textContent = row[i] || "";
+            tr.appendChild(td);
+        }
+
+        table.appendChild(tr);
+    });
+
+    statusBox.textContent =
+        rows.length + " row(s) displayed";
+}
+
+fetch(CSV_URL)
+.then(r => r.text())
+.then(text => {
+
+    allRows = parseCSV(text);
+
+    render(allRows);
+
+    searchBox.addEventListener("input", function () {
+
+        const q = this.value.toLowerCase();
+
+        render(
+            allRows.filter(row =>
+                row.join(" ")
+                   .toLowerCase()
+                   .indexOf(q) !== -1
+            )
+        );
+
+    });
+
+})
+.catch(err => {
+    statusBox.textContent =
+        "Failed to load CSV: " + err;
+});
+
+</script>
+
+</body>
 </html>
